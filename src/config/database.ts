@@ -1,1 +1,31 @@
-import { DataSource } from 'typeorm';\nimport dotenv from 'dotenv';\n\ndotenv.config();\n\nconst AppDataSource = new DataSource({\n  type: 'postgres',\n  host: process.env.DB_HOST || 'localhost',\n  port: parseInt(process.env.DB_PORT || '5432', 10),\n  username: process.env.DB_USERNAME || 'postgres',\n  password: process.env.DB_PASSWORD || 'postgres',\n  database: process.env.DB_NAME || 'fintrack_dev',\n  synchronize: process.env.DB_SYNCHRONIZE === 'true',\n  logging: process.env.DB_LOGGING === 'true',\n  entities: ['src/entities/**/*.ts'],\n  migrations: ['src/migrations/**/*.ts'],\n  subscribers: ['src/subscribers/**/*.ts'],\n});\n\nexport default AppDataSource;\n
+import { DataSource } from 'typeorm';
+import dotenv from 'dotenv';
+import { User } from '../entities/User';
+import { Transaction } from '../entities/Transaction';
+import { SharedExpense } from '../entities/SharedExpense';
+import { ExpenseParticipant } from '../entities/ExpenseParticipant';
+import { TransactionParticipant } from '../entities/TransactionParticipant';
+
+dotenv.config();
+
+const AppDataSource = new DataSource({
+  type: 'postgres',
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT || '5432'),
+  username: process.env.DB_USERNAME || 'postgres',
+  password: process.env.DB_PASSWORD || 'postgres',
+  database: process.env.DB_NAME || 'fintrack_dev',
+  synchronize: process.env.DB_SYNCHRONIZE === 'true' || true,
+  logging: process.env.DB_LOGGING === 'true' || false,
+  entities: [
+    User,
+    Transaction,
+    SharedExpense,
+    ExpenseParticipant,
+    TransactionParticipant,
+  ],
+  migrations: ['src/migrations/*.ts'],
+  subscribers: ['src/subscribers/*.ts'],
+});
+
+export default AppDataSource;
