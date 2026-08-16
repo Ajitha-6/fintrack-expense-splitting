@@ -561,3 +561,16 @@ Mock their findById, find, and update methods to return test data.
 
 **Key Insight:** Copilot generates quality code when given specific, constrained prompts with examples (#file, @workspace). Generic prompts ("build a service") produce generic code requiring heavy remediation. Specific prompts ("validatethat amounts sum to total, throw ValidationError if not") produce code meeting standards immediately.
 
+## Lessons Learned
+
+This exercise demonstrated that GitHub Copilot is most effective when provided with specific requirements, constraints, and architectural context. Broad prompts generated functional but incomplete code, while detailed prompts produced higher-quality output requiring less remediation.
+
+Human judgment remained essential for:
+- Financial calculation validation
+- Authorization design
+- Error handling consistency
+- Fintech compliance concerns
+- Test quality verification
+
+Copilot accelerated implementation and documentation, while developer oversight ensured correctness, security, and maintainability.
+
