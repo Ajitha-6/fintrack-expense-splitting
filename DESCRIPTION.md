@@ -1,4 +1,4 @@
-# Summary
+ # Summary
 
 Implemented Expense Splitting feature and remediated AI-generated Transaction module.
 
